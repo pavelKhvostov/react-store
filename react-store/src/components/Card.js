@@ -1,8 +1,29 @@
-const Card = (props) => {
-  console.log(props.obj);
+import { useState } from 'react';
+
+const Card = ({ id, imageUrl, title, price, onClickAddItem, onClickAddFavorite }) => {
+  const handleClick = () => {
+    const item = { id, imageUrl, title, price };
+    onClickAddItem(item); // Передаем объект карточки
+  };
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const onClickIsFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+  const handleClickFavorite = () => {
+    const item = { id, imageUrl, title, price };
+    onClickIsFavorite();
+    onClickAddFavorite(item);
+  };
+
   return (
     <div className='card'>
-      <button className=' btn card__favorite'>
+      <button
+        onClick={handleClickFavorite}
+        className={isFavorite ? 'btn card__favorite--active' : 'btn card__favorite'}
+      >
         <svg
           className=' card__icon-favorite'
           width='16'
@@ -20,14 +41,14 @@ const Card = (props) => {
           />
         </svg>
       </button>
-      <img className='card__img' src={props.imageUrl} alt='Кроссовок' />
-      <h2 className='card__title'>{props.title}</h2>
+      <img className='card__img' src={imageUrl} alt='Кроссовок' />
+      <h2 className='card__title'>{title}</h2>
       <div className='card__wrap-event'>
         <div className='card__inner'>
           <span className='card__text'>Цена:</span>
-          <span className='card__price'>{props.price} Р</span>
+          <span className='card__price'>{price} Р</span>
         </div>
-        <button className='btn'>
+        <button onClick={handleClick} className='btn'>
           <svg
             className='card__icon-plus'
             width='12'

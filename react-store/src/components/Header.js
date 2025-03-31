@@ -1,4 +1,4 @@
-const Header = () => {
+const Header = ({ onClickIsBasket }) => {
   return (
     <div className='header'>
       <div className='container'>
@@ -12,7 +12,7 @@ const Header = () => {
           </div>
           <ul className='header__list'>
             <li className='header__item'>
-              <a href='#' className='header__link'>
+              <a onClick={() => onClickIsBasket()} href='#' className='header__link'>
                 <svg
                   width='20'
                   height='20'
