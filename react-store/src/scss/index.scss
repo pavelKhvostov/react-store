@@ -1,0 +1,19 @@
+/* Global */
+/* ------------------------------------ */
+@import './global/_normalize';
+@import './global/_mixins';
+@import './global/_variables';
+@import './global/_reboot';
+@import './global/_container';
+@import './global/_visually-hidden';
+
+/* Blocks */
+/* ------------------------------------ */
+@import './blocks/wrapper';
+@import './blocks/header';
+@import './blocks/card';
+@import './blocks/button';
+@import './blocks/drawer';
+@import './blocks/overlay';
+@import './blocks/content';
+@import './blocks/search-block';

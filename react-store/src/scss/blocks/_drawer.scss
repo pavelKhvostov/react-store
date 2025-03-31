@@ -1,0 +1,181 @@
+.drawel {
+  position: fixed;
+  padding: 32px 30px;
+  background-color: #fff;
+  z-index: 2;
+  right: 0;
+  top: 0;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__img {
+    object-fit: contain;
+    margin-right: 21px;
+    width: 90px;
+    height: 90px;
+  }
+
+  &__heading {
+    margin: 0 0 30px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+  }
+
+  &__title {
+    margin: 0 0 8px;
+    max-width: 150px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+  }
+
+  &__mid {
+    flex-grow: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__wrap {
+    padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #f3f3f3;
+    border-radius: 20px;
+
+    &-event {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    max-width: 285px;
+
+    &-title {
+      margin: 0 0 9px;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 27px;
+      color: #000000;
+    }
+
+    &-decr {
+      margin: 0 0 40px;
+      max-width: 280px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      color: #000000;
+      opacity: 0.4;
+    }
+
+    &-btn {
+      width: 100%;
+
+      &:hover .drawel__empty-icon {
+        left: 40px;
+      }
+    }
+
+    &-icon {
+      transform: rotate(180deg);
+      position: absolute;
+      left: 50px;
+      transition: left 0.3s ease-in-out;
+    }
+  }
+
+  &__price {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+  }
+
+  &__close-btn {
+    margin-top: 25px;
+  }
+
+  &__icon-close {
+    transform: rotate(-45deg);
+  }
+
+  &__down {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__text-wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__decr {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+  }
+
+  &__line {
+    width: 180px;
+    border-bottom: 1px dashed #dfdfdf;
+  }
+
+  &__btn {
+    position: relative;
+    background: #9dd558;
+    border-radius: 18px;
+    border: none;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+
+    &:hover {
+      background: #ade963;
+    }
+
+    &:hover .drawel__icon-arrow {
+      transform: translate(10px, -50%);
+    }
+  }
+
+  &__icon-arrow {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &__close {
+    margin: 0;
+  }
+}

@@ -1,0 +1,119 @@
+.card {
+  position: relative;
+  z-index: 2;
+  padding: 25px;
+  max-width: 210px;
+  border: 1px solid #f3f3f3;
+  border-radius: 40px;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-7px);
+    background: #ffffff;
+    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  &__favorite {
+    position: absolute;
+  }
+
+  &__favorite--active {
+    position: absolute;
+    .card__icon-favorite {
+      display: none;
+    }
+    .card__icon-favorite--active {
+      display: block;
+      flex-shrink: 0;
+      width: 19px;
+      height: 19px;
+    }
+  }
+
+  &__icon-favorite {
+    flex-shrink: 0;
+    width: 19px;
+    height: 19px;
+    color: #eaeaea;
+  }
+
+  &__inner-relative {
+    position: relative;
+  }
+
+  &__img {
+    margin-bottom: 14px;
+  }
+
+  &__img--absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+  }
+
+  &__transform {
+    transform: translate(500px, 500px);
+  }
+
+  &__title {
+    margin: 0 0 14px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    text-transform: uppercase;
+    color: #bdbdbd;
+  }
+
+  &__price {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+  }
+
+  &__icon-plus {
+    flex-shrink: 0;
+    width: 13px;
+    height: 13px;
+    color: #eaeaea;
+  }
+
+  &__wrap-event {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__icon-checked {
+    display: none;
+    width: 12px;
+    height: 12px;
+  }
+
+  &__plus--active {
+    z-index: 1;
+    background: linear-gradient(180deg, #89f09c 0%, #3cc755 100%);
+
+    .card__icon-plus {
+      display: none;
+    }
+    .card__icon-checked {
+      display: block;
+    }
+  }
+}
