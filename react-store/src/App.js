@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
+import axios from 'axios';
 import Drawer from './components/Drawer';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
@@ -10,6 +11,11 @@ function App() {
   const [isBasket, setIsBsket] = useState(false);
   const [searchItem, setSearchItem] = useState('');
   const [favoriteItem, setFavoriteItem] = useState([]);
+  const [isFavarite, setIsFavorite] = useState(false);
+
+  const onClickFavorite = () => {
+    setIsFavorite(!isFavarite);
+  };
 
   const onChangeSearched = (event) => {
     const value = event.target.value;
@@ -26,12 +32,14 @@ function App() {
       const isItemExist = favoriteItems.some((item) => item.id === obj.id);
 
       if (isItemExist) {
-        return;
+        const updatedItems = favoriteItems.filter((item) => item.id !== obj.id);
+        localStorage.setItem('favoriteItems', JSON.stringify(updatedItems));
+        setFavoriteItem(updatedItems);
+      } else {
+        favoriteItems.push(obj);
+        localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
+        setFavoriteItem(favoriteItems);
       }
-
-      favoriteItems.push(obj);
-      localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
-      setFavoriteItem(favoriteItems);
     } catch (error) {
       console.error('Ошибка сохранения в localStorage:', error);
     }
@@ -60,14 +68,15 @@ function App() {
   };
 
   useEffect(() => {
-    fetch('https://67e0fed158cc6bf78523b9c1.mockapi.io/items')
-      .then((res) => res.json())
-      .then((res) => setItems(res));
+    axios.get('https://67e0fed158cc6bf78523b9c1.mockapi.io/items').then((res) => {
+      setItems(res.data);
+    });
+    const basketItems = JSON.parse(localStorage.getItem('basketItems')) || [];
+    setBasketItem(basketItems);
   }, []);
 
   useEffect(() => {
     const favoriteItems = JSON.parse(localStorage.getItem('favoriteItems')) || [];
-    localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
     setFavoriteItem(favoriteItems);
   }, []);
 

@@ -6,30 +6,20 @@ const Card = ({ id, imageUrl, title, price, onClickAddItem, onClickAddFavorite }
     onClickAddItem(item); // Передаем объект карточки
   };
 
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const onClickIsFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
-
   const handleClickFavorite = () => {
     const item = { id, imageUrl, title, price };
-    onClickIsFavorite();
     onClickAddFavorite(item);
   };
 
   return (
     <div className='card'>
-      <button
-        onClick={handleClickFavorite}
-        className={isFavorite ? 'btn card__favorite--active' : 'btn card__favorite'}
-      >
+      <button onClick={handleClickFavorite} className='btn card__favorite'>
         <svg
           className=' card__icon-favorite'
           width='16'
           height='16'
           viewBox='0 0 16 16'
-          fill='none'
+          fill='currentColor'
           xmlns='http://www.w3.org/2000/svg'
         >
           <path

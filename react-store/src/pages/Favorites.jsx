@@ -1,6 +1,6 @@
 import Card from '../components/Card';
 
-const Favorites = ({ favoriteItem, onClickAddFavorite }) => {
+const Favorites = ({ favoriteItem, onClickAddFavorite, isFavarite }) => {
   return (
     <div className='content'>
       <div className='container'>

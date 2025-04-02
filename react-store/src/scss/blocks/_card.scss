@@ -21,7 +21,7 @@
   &__favorite--active {
     position: absolute;
     .card__icon-favorite {
-      display: none;
+      color: #fa4444;
     }
     .card__icon-favorite--active {
       display: block;

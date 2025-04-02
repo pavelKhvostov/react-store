@@ -20,38 +20,109 @@ const Drawer = ({ isBasket, basketItems, onRemoveItem, onClickIsBasket }) => {
             </svg>
           </button>
         </div>
-        <div className='drawer__mid'>
-          {basketItems.length > 0 ? (
-            basketItems.map((item, index) => (
-              <div className='drawer__wrap' key={index}>
-                <img className='drawer__img' src={item.imageUrl} alt={item.title} />
-                <div className='drawer__inner'>
-                  <h2 className='drawer__title'>{item.title}</h2>
-                  <span className='drawer__price'>{item.price} P</span>
+
+        {basketItems.length === 0 ? (
+          <div className='drawer__empty'>
+            <img src='img/empty.jpg' alt='пустая коробка' />
+            <p className='drawer__decr'>Корзина пуста</p>
+            <span className='drawer__text'>
+              Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
+            </span>
+            <button onClick={() => onClickIsBasket()} className='drawer__btn drawer__btn-empty'>
+              <svg
+                className='drawer__empty-btn-arrow'
+                width='16'
+                height='14'
+                viewBox='0 0 16 14'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M1 7H14.7143'
+                  stroke='white'
+                  stroke-width='2'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                />
+                <path
+                  d='M8.71436 1L14.7144 7L8.71436 13'
+                  stroke='white'
+                  stroke-width='2'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                />
+              </svg>
+              <span className='drawer__btn-text'> Вернуться назад </span>
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className='drawer__mid'>
+              {basketItems.map((item, index) => (
+                <div className='drawer__wrap' key={index}>
+                  <img className='drawer__img' src={item.imageUrl} alt={item.title} />
+                  <div className='drawer__inner'>
+                    <h2 className='drawer__title'>{item.title}</h2>
+                    <span className='drawer__price'>{item.price} P</span>
+                  </div>
+                  <button onClick={() => onRemoveItem(item.id)} className='btn'>
+                    <svg
+                      className='drawer__icon-close'
+                      width='12'
+                      height='12'
+                      viewBox='0 0 12 12'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M10.6653 5.13122H7.20214V1.66821C7.20214 0.332846 5.13114 0.332846 5.13114 1.66821V5.13122H1.668C0.332935 5.13122 0.332935 7.20215 1.668 7.20215H5.13114V10.6652C5.13114 12.0005 7.20214 12.0005 7.20214 10.6652V7.20215H10.6653C12.0005 7.20215 12.0005 5.13122 10.6653 5.13122Z'
+                        fill='#D3D3D3'
+                      />
+                    </svg>
+                  </button>
                 </div>
-                <button onClick={() => onRemoveItem(item.id)} className='btn'>
-                  <svg
-                    className='drawer__icon-close'
-                    width='12'
-                    height='12'
-                    viewBox='0 0 12 12'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M10.6653 5.13122H7.20214V1.66821C7.20214 0.332846 5.13114 0.332846 5.13114 1.66821V5.13122H1.668C0.332935 5.13122 0.332935 7.20215 1.668 7.20215H5.13114V10.6652C5.13114 12.0005 7.20214 12.0005 7.20214 10.6652V7.20215H10.6653C12.0005 7.20215 12.0005 5.13122 10.6653 5.13122Z'
-                      fill='#D3D3D3'
-                    />
-                  </svg>
-                </button>
-              </div>
-            ))
-          ) : (
-            <div className='drawer__empty'>
-              <p>Корзина пуста</p>
+              ))}
             </div>
-          )}
-        </div>
+            <div className='drawer__down'>
+              <div className='drawer__price-inner'>
+                <span className='drawer__item-text'>Итого: </span>
+                <span className='drawer__item-line'></span>
+                <span className='drawer__item-price'>21 498 руб.</span>
+              </div>
+              <div className='drawer__price-inner'>
+                <span className='drawer__item-text'>Налог 5%: </span>
+                <span className='drawer__item-line'></span>
+                <span className='drawer__item-price'>1074 руб.</span>
+              </div>
+              <button className='drawer__btn'>
+                <span className='drawer__btn-text'>Оформить заказ </span>
+                <svg
+                  className='drawer__btn-arrow'
+                  width='16'
+                  height='14'
+                  viewBox='0 0 16 14'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M1 7H14.7143'
+                    stroke='white'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                  <path
+                    d='M8.71436 1L14.7144 7L8.71436 13'
+                    stroke='white'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                </svg>
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

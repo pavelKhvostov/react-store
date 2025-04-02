@@ -1,7 +1,15 @@
 import React from 'react';
 import Card from '../components/Card';
 
-const Home = ({ items, searchItem, onClickAddItem, onChangeSearched, onClickAddFavorite }) => {
+const Home = ({
+  items,
+  searchItem,
+  isFavarite,
+  onClickAddItem,
+  onChangeSearched,
+  onClickAddFavorite,
+  onClickFavorite,
+}) => {
   return (
     <div className='content'>
       <div className='container'>
