@@ -1,15 +1,20 @@
+import { Link } from 'react-router-dom';
+
 const Header = ({ onClickIsBasket }) => {
   return (
     <div className='header'>
       <div className='container'>
         <div className='header__logo-wrap'>
-          <div className='header__left-inner'>
-            <img className='header__logo' src='img/logo.jpg' alt='' />
-            <div className='header__wrap-left'>
-              <h2 className='header__title'>REACT SNEAKERS</h2>
-              <p className='header__decr'>Магазин лучших кроссовок</p>
+          <Link to='/'>
+            <div className='header__left-inner'>
+              <img className='header__logo' src='img/logo.jpg' alt='' />
+              <div className='header__wrap-left'>
+                <h2 className='header__title'>REACT SNEAKERS</h2>
+                <p className='header__decr'>Магазин лучших кроссовок</p>
+              </div>
             </div>
-          </div>
+          </Link>
+
           <ul className='header__list'>
             <li className='header__item'>
               <a onClick={() => onClickIsBasket()} href='#' className='header__link'>
@@ -47,7 +52,7 @@ const Header = ({ onClickIsBasket }) => {
               </a>
             </li>
             <li className='header__item'>
-              <a href='#' className='header__link'>
+              <Link to='/favorite' className='header__link'>
                 <svg
                   width='19'
                   height='17'
@@ -68,7 +73,7 @@ const Header = ({ onClickIsBasket }) => {
                   </defs>
                 </svg>
                 <span className='header__text'>Закладки</span>
-              </a>
+              </Link>
             </li>
             <li className='header__item'>
               <a href='#' className='header__link'>

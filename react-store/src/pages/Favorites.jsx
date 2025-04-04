@@ -7,7 +7,7 @@ const Favorites = ({ favoriteItem, onClickAddFavorite, isFavarite }) => {
         <h2 className='content__title'>Мои закладки</h2>
         <div className='wrapper__inner'>
           {favoriteItem.map((obj) => (
-            <Card key={obj.id} onClickAddFavorite={onClickAddFavorite} {...obj} />
+            <Card key={obj.id} onClickAddFavorite={onClickAddFavorite} fovarited={true} {...obj} />
           ))}
         </div>
       </div>

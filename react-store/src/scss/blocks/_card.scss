@@ -23,11 +23,9 @@
     .card__icon-favorite {
       color: #fa4444;
     }
-    .card__icon-favorite--active {
-      display: block;
-      flex-shrink: 0;
-      width: 19px;
-      height: 19px;
+
+    &:hover .card__icon-favorite {
+      color: #fa4444;
     }
   }
 

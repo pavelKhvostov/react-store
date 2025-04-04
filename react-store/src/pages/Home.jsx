@@ -4,12 +4,26 @@ import Card from '../components/Card';
 const Home = ({
   items,
   searchItem,
-  isFavarite,
   onClickAddItem,
   onChangeSearched,
   onClickAddFavorite,
-  onClickFavorite,
+  isLoading,
 }) => {
+  const renderItems = () => {
+    const filteredItems = items.filter((item) => item.title.toLowerCase().includes(searchItem));
+
+    return (isLoading ? [...Array(8)] : filteredItems).map((obj, index) => (
+      <Card
+        key={isLoading ? index : obj.id}
+        onClickAddFavorite={onClickAddFavorite}
+        searchItem={searchItem}
+        onChangeSearched={onChangeSearched}
+        onClickAddItem={onClickAddItem}
+        isLoading={isLoading}
+        {...obj}
+      />
+    ));
+  };
   return (
     <div className='content'>
       <div className='container'>
@@ -24,20 +38,7 @@ const Home = ({
             placeholder='Поиск...'
           />
         </div>
-        <div className='wrapper__inner'>
-          {items
-            .filter((item) => item.title.toLowerCase().includes(searchItem))
-            .map((obj) => (
-              <Card
-                key={obj.id}
-                onClickAddFavorite={onClickAddFavorite}
-                searchItem={searchItem}
-                onChangeSearched={onChangeSearched}
-                onClickAddItem={onClickAddItem}
-                {...obj}
-              />
-            ))}
-        </div>
+        <div className='wrapper__inner'>{renderItems()}</div>
       </div>
     </div>
   );
