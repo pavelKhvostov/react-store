@@ -5,6 +5,7 @@ import axios from 'axios';
 import Drawer from './components/Drawer';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
+import Order from './pages/Order';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -13,6 +14,7 @@ function App() {
   const [searchItem, setSearchItem] = useState('');
   const [favoriteItem, setFavoriteItem] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [orderItems, setOrderItem] = useState([]);
 
   const onChangeSearched = (event) => {
     const value = event.target.value;
@@ -42,6 +44,19 @@ function App() {
     }
   };
 
+  const onClickAddOrder = (arr) => {
+    try {
+      const orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
+      const updateItems = [...orderItems, ...arr];
+      setOrderItem(updateItems);
+      localStorage.setItem('orderItems', JSON.stringify(updateItems));
+      setBasketItem([]);
+      localStorage.setItem('basketItems', JSON.stringify([])); // Сохранение в localStorage
+    } catch (error) {
+      console.error('Ошибка сохранения в localStorage:', error);
+    }
+  };
+
   const onClickAddItem = (obj) => {
     try {
       const basketItems = JSON.parse(localStorage.getItem('basketItems')) || [];
@@ -61,7 +76,7 @@ function App() {
   const onRemoveItem = (id) => {
     const updatedBasket = basketItem.filter((item) => item.id !== id);
     setBasketItem(updatedBasket);
-    localStorage.setItem('basketItems', JSON.stringify(updatedBasket)); // Сохранение в localStorage
+    localStorage.setItem('basketItems', JSON.stringify(updatedBasket));
   };
 
   useEffect(() => {
@@ -80,17 +95,20 @@ function App() {
     setBasketItem(basketItems);
     const favoriteItems = JSON.parse(localStorage.getItem('favoriteItems')) || [];
     setFavoriteItem(favoriteItems);
+    const orderItems = JSON.parse(localStorage.getItem('orderItems')) || [];
+    setOrderItem(orderItems);
   }, []);
 
   return (
     <div className='wrapper'>
-      <Header onClickIsBasket={onClickIsBasket} />
+      <Header onClickIsBasket={onClickIsBasket} basketItem={basketItem} />
       {isBasket && (
         <Drawer
           isBasket={isBasket}
           basketItems={basketItem}
           onRemoveItem={onRemoveItem}
           onClickIsBasket={onClickIsBasket}
+          onClickAddOrder={onClickAddOrder}
         />
       )}
 
@@ -113,9 +131,15 @@ function App() {
         <Route
           path='/favorite'
           element={
-            <Favorites onClickAddFavorite={onClickAddFavorite} favoriteItem={favoriteItem} />
+            <Favorites
+              onClickAddFavorite={onClickAddFavorite}
+              onClickAddItem={onClickAddItem}
+              favoriteItem={favoriteItem}
+            />
           }
         />
+
+        <Route path='/Order' element={<Order orderItems={orderItems} />} />
       </Routes>
     </div>
   );

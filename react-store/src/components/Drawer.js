@@ -1,6 +1,10 @@
 import Info from './Info';
 
-const Drawer = ({ isBasket, basketItems, onRemoveItem, onClickIsBasket }) => {
+const Drawer = ({ isBasket, basketItems, onRemoveItem, onClickIsBasket, onClickAddOrder }) => {
+  const totalPrice = basketItems.reduce((sum, obj) => {
+    return obj.price + sum;
+  }, 0);
+
   return (
     <div className={isBasket ? 'overley--active' : 'ovarley'}>
       <div className='drawer'>
@@ -62,14 +66,14 @@ const Drawer = ({ isBasket, basketItems, onRemoveItem, onClickIsBasket }) => {
               <div className='drawer__price-inner'>
                 <span className='drawer__item-text'>Итого: </span>
                 <span className='drawer__item-line'></span>
-                <span className='drawer__item-price'>21 498 руб.</span>
+                <span className='drawer__item-price'>{totalPrice} руб.</span>
               </div>
               <div className='drawer__price-inner'>
                 <span className='drawer__item-text'>Налог 5%: </span>
                 <span className='drawer__item-line'></span>
                 <span className='drawer__item-price'>1074 руб.</span>
               </div>
-              <button className='drawer__btn'>
+              <button onClick={() => onClickAddOrder(basketItems)} className='drawer__btn'>
                 <span className='drawer__btn-text'>Оформить заказ </span>
                 <svg
                   className='drawer__btn-arrow'

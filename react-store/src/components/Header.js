@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 
-const Header = ({ onClickIsBasket }) => {
+const Header = ({ onClickIsBasket, basketItem }) => {
+  const totalPrice = basketItem.reduce((sum, obj) => {
+    return obj.price + sum;
+  }, 0);
+
   return (
     <div className='header'>
       <div className='container'>
@@ -48,7 +52,7 @@ const Header = ({ onClickIsBasket }) => {
                   />
                 </svg>
 
-                <span className='header__text'>1205 руб.</span>
+                <span className='header__text'>{totalPrice} руб.</span>
               </a>
             </li>
             <li className='header__item'>
@@ -76,7 +80,7 @@ const Header = ({ onClickIsBasket }) => {
               </Link>
             </li>
             <li className='header__item'>
-              <a href='#' className='header__link'>
+              <Link to='/Order' className='header__link'>
                 <svg
                   width='18'
                   height='18'
@@ -93,7 +97,7 @@ const Header = ({ onClickIsBasket }) => {
                 </svg>
 
                 <span className='header__text'>Профиль</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
