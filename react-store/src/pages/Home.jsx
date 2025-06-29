@@ -9,10 +9,12 @@ const Home = ({
   onClickAddFavorite,
   isLoading,
 }) => {
+  console.log(items);
   const renderItems = () => {
+    console.log(items);
     const filteredItems = items.filter((item) => item.title.toLowerCase().includes(searchItem));
-
-    return (isLoading ? [...Array(8)] : filteredItems).map((obj, index) => (
+    // (isLoading ? [...Array(8)] : filteredItems)
+    return items.map((obj, index) => (
       <Card
         key={isLoading ? index : obj.id}
         onClickAddFavorite={onClickAddFavorite}
